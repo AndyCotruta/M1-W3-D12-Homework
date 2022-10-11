@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Project</title>
+    <style>
+      .myHeading {
+        color: red;
+      }
+      .disappear {
+        visibility: hidden;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <h1 onclick="makeItClickable(event)">This is the title of the page</h1>
+      <h2>This is the subtitle of the page</h2>
+    </div>
+
+    <div>
+      <hr />
+
+      <ul id="firstList">
+        <li>1st</li>
+        <li>2nd</li>
+        <li>3rd</li>
+      </ul>
+
+      <ul id="secondList">
+        <li>1st</li>
+        <li>2nd</li>
+        <li>3rd</li>
+      </ul>
+
+      <a href="https://epicode.it">This link goes to Epicode</a>
+
+      <div>
+        <p>This text is just for the exercise</p>
+      </div>
+
+      <div>
+        <input
+          type="text"
+          id="input-field"
+          placeholder="input field for the exercise"
+          onchange="changeSubtitle(event)"
+        />
+      </div>
+      <div>
+        <input
+          type="color"
+          id="input-color"
+          placeholder="Select the color of the subtitle"
+          onchange="changeSubtitleColor(event)"
+        />
+      </div>
+    </div>
+
+    <div>
+      <p>And this text is just for the exercise too!</p>
+      <h2 id="footer" style="color: red" onclick="changeFooterText(event)">
+        Save this page on your computer and open it with VSCode to get the
+        questions!
+      </h2>
+    </div>
+    <button onclick="changeTitle(event)">Click to change title</button>
+    <button onclick="addClassToTitle(event)">Click to add class title</button>
+    <button onclick="changePcontent()">Click to change content</button>
+    <button onclick="changeUrls()">Click to change urls</button>
+    <button onclick="addToTheSecond()">Click to add to the second</button>
+    <button onclick="addParagraph()">Click to add paragraph</button>
+    <br />
+    <button onclick="firstUlDisappear()">Click to disappear</button>
+    <button onclick="paintItGreen()">Click to paint it green</button>
+    <button onclick="makeItClickable()">Click to shuffle title color</button>"
+
+    <script>
+      /* EXERCISE 1
+       Write a function for changing the title of the document in something else.
+      */
+
+      const changeTitle = function (newTitle) {
+        const h1 = document.querySelector("h1");
+
+        h1.innerText = "This is another title";
+      };
+
+      /* EXERCISE 2
+       Write a function for changing the class of the title of the page in "myHeading".
+      */
+
+      const addClassToTitle = function (event) {
+        const h1 = document.querySelector("h1");
+        h1.className = "myHeading";
+      };
+
+      /* EXERCISE 3
+       Write a function for changing the text of only the p which are children of a div.
+      */
+
+      const changePcontent = function () {
+        const p = document.querySelectorAll("div > p");
+        for (let i = 0; i < p.length; i++) {
+          p[i].innerText = "This is another text";
+        }
+      };
+
+      /* EXERCISE 4
+       Write a function for changing the href property of every link to https://www.google.com
+      */
+
+      const changeUrls = function () {
+        const links = document.querySelectorAll("a[href]");
+        for (let changedLinks of links) {
+          changedLinks.href = "https://www.google.com";
+        }
+      };
+
+      /* EXERCISE 5
+       Write a function for adding a new list item in the second unordered list.
+      */
+
+      const addToTheSecond = function (content) {
+        const secondList = document.querySelector("#secondList");
+        const addListItem = document.createElement("li");
+        addListItem.innerText = "4th";
+        secondList.appendChild(addListItem);
+      };
+
+      /* EXERCISE 6
+       Write a function for adding a second paragraph to the first div.
+      */
+
+      const addParagraph = function (content) {
+        const secondParagraph = document.querySelector("div");
+        const p = document.createElement("p");
+        p.innerText = "This paragraph was added";
+        secondParagraph.appendChild(p);
+      };
+
+      /* EXERCISE 7
+       Write a function for making the first unordered list disappear.
+      */
+
+      const firstUlDisappear = function () {
+        const firstList = document.querySelector("#firstList");
+        firstList.className = "disappear";
+      };
+
+      /* EXERCISE 8
+       Write a function for making the background of every unordered list green.
+      */
+
+      const paintItGreen = function () {
+        const paint = document.querySelectorAll("ul");
+        for (let i = 0; i < paint.length; i++) {
+          paint[i].style.backgroundColor = "green";
+        }
+      };
+
+      /* EXERCISE 9
+       Make the heading of the page change color every time the user clicks on it.
+      */
+
+      const getRandomColor = function () {
+        const red = Math.round(Math.random() * 255);
+        const green = Math.round(Math.random() * 255);
+        const blue = Math.round(Math.random() * 255);
+
+        return "rgb(" + red + ", " + green + ", " + blue + ")";
+      };
+
+      const makeItClickable = function () {
+        const randomColor = getRandomColor();
+        const clicked = event.target;
+        let title = document.querySelector("h1");
+        title.style.color = randomColor;
+      };
+
+      /* EXERCISE 10
+       Change the footer text with something else when the user clicks on it.
+      */
+
+      const changeFooterText = function () {
+        const footer = document.querySelector("#footer");
+        const clicked = event.target;
+        footer.innerText = "This footer has been changed";
+      };
+
+      /* EXERCISE 11
+       Attach an event listener to the input field in the page that changes the text of the page's subtitle
+      */
+
+      const changeSubtitle = function (event) {
+        const h2 = document.querySelector("h2");
+        const input = event.target;
+        h2.innerText = input.value;
+      };
+
+      //  EXERCISE 12
+      // Create a welcome alert message when the page succesfully loads
+
+      window.onload = function () {
+        alert("The page loaded successfully");
+      };
+
+      /* EXERCISE 13
+       Use HTML5 tags to properly provide semantic meaning to the different portions of the page.
+      */
+
+      /* ### EXTRA ###  EXERCISE 14
+       Create an input of type "color" and use it to change the color of the subtitle
+      */
+
+      const changeSubtitleColor = function (event) {
+        const h2 = document.querySelector("h2");
+        const input = event.target;
+        h2.style.color = input.value;
+      };
+    </script>
+  </body>
+</html>
